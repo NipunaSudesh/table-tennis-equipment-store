@@ -84,12 +84,12 @@
 .btn:hover{
     background-color: var(--dark-blue);
 }
-.delete-btn{
+/* .delete-btn{
     background-color: var(--red);
 }
 .delete-btn:hover{
     background-color:rgb(115, 15, 15);
-}
+} */
 .form-container form p{
     margin-top: 15px;
     font-size: 20px;
@@ -115,15 +115,18 @@
     color: var(--white);
     font-size: 20px;
 }
-.container{
+/* ////////////////////////////////////////////////////// */
+
+ .container{
     min-height: 100vh;
-    background-color: var(--light-bg);
+    background: transparent;
+     background-color: var(--light-bg); 
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
-
-}
+    
+} 
 .container .profile{
     padding: 20px;
     background-color: var(--white);
@@ -135,6 +138,7 @@
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
+    
 }
 .container .profile img{
     height: 150px;
@@ -166,7 +170,7 @@
 
 /* --------------------profile update------------------ */
 /* .update-profile{ */
-    .update-profile{
+    /* .update-profile{
         min-height: 100vh;
         background-color: var(--light-bg);
         display: flex;
@@ -220,7 +224,7 @@
         font-size: 17px;
         color:var(--black);
         margin-top: 10px;
-     }
+     } */
      
      @media (max-width:650px){
         .update-profile form .flex{
