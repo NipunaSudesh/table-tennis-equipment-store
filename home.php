@@ -25,8 +25,8 @@ if(isset($_GET['logout'])){
     <title>Home</title>
     <link rel="stylesheet" href="style2.css">
 </head>
-<body>
-      <div class="container">
+
+     <div class="container">
       <div id="close-login-btn" class="fa-solid fa-xmark"></div>
         <div class="profile">
             <?php 
@@ -48,7 +48,7 @@ if(isset($_GET['logout'])){
             <a href="home.php?logout=<?php echo $user_id; ?> "class="delete-btn">Logout</a>
             <p>new <a href="login.php">Login</a> or <a href="rejister.php">Rejister</a></p>
         </div>
-      </div>
+      - </div> 
     
 </body>
 </html>

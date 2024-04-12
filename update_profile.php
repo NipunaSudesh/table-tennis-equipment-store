@@ -98,8 +98,11 @@ if(!empty($update_image)){
                 <input type="password" name="confirm_pass" placeholder="confirm new password" class="box">
            </div>
         </div>
+        <div class="btn-class">
         <input type="submit" values="update profile" class="btn" name="update_profile">
-        <a href="home.php" class="delete-btn">Go Back</a>
+        <a href="home.php" class="btn">Go Back</a>
+   
+        </div>
       </form>
 
     </div>

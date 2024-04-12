@@ -46,7 +46,7 @@ $sql = "SELECT * FROM user_form WHERE email='$email' AND pass='$pass'" ;
 </head>
 <body>
     <div class="form-container">
-    <div id="close-login-btn" class="fa-solid fa-xmark"></div>
+    <!-- <div id="close-login-btn" class="fa-solid fa-xmark"></div> -->
         <form action="" method="post" enctype="multipart/form-data">
             <h3>Login Now</h3>
             <?php
