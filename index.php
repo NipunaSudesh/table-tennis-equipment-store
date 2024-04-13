@@ -57,7 +57,7 @@
         <div class="slide-content">
             <div class="card-wrapper1 swiper-wrapper">
             <?php
-                $select_product=mysqli_query($conn,"SELECT * FROM products where quantity=0");
+                $select_product=mysqli_query($conn,"SELECT * FROM products where quantity=0 And productType != 'show_item'");
                     if(mysqli_num_rows($select_product)>0){
                         while($row= mysqli_fetch_assoc($select_product)){
                             echo'
