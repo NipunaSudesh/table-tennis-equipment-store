@@ -35,7 +35,7 @@
             <div class="swiper item-slider">
                 <div class="swiper-wrapper">
                 <?php
-                $select_product=mysqli_query($conn,"SELECT * FROM products where quantity=0");
+                $select_product=mysqli_query($conn,"SELECT * FROM products where productType='Show_item'");
                     if(mysqli_num_rows($select_product)>0){
                         while($row= mysqli_fetch_assoc($select_product)){
                             echo' 
