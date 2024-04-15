@@ -95,27 +95,6 @@
     </div>
     </section>
 
-                <!-- <div class="card swiper-slide">
-                  <div class="image-content">
-                      <span class="overlay"></span>
-    
-                      <div class="card-image">
-                          <img src="photo/rabar1.jpeg" alt="bat" class="card-img">
-                      </div>
-                  </div>
-                  <div class="card-contant">
-                      <h2 class="name">Rubbers</h2>
-                      <p class="discription">"Elevate your spin and control with our table tennis rubbers.
-                         Choose from a variety of rubbers designed for different playing style
-                        s. Enhance your grip, precision, and power on the table with our high-quality rubbers."</p>
-                      <button class="btn">Viwe More</button>
-                    </div>
-              </div>
-
-
-
-
-
 <!-- featured items scetion stars -->
 
     
@@ -144,7 +123,7 @@ if(mysqli_num_rows($select_product)>0){
             <div class="content">
                 <h3>'.$row['productName'].'</h3>
                 <div class="price">Rs.'.$row['price'].' <span>Rs.'.$row['OldPrice'].'</span></div>
-                <a href="#" class="btn">Add to Cart</a>
+                <a href="cardViwe.php?productID='.$row['productID'].'"><button class="btn">Add Card</button></a>
             </div>
         </div>
         ';
@@ -258,25 +237,7 @@ if(mysqli_num_rows($select_product)>0){
             </div>
     </div>
 </section>
-            
-
-            <!-- <a href="#" class="swiper-slide box">
-                <div class="image">
-                    <img src="arrivals/ball6.jpeg" alt="">
-                </div>
-                <div class="content">
-                    <h3>DNS</h3>
-                    <div class="price">RS.160 <span>RS.190</span></div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-                </a>
-
+ 
 
 <!-- Arrivals section ends -->
 
