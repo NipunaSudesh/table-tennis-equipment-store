@@ -22,8 +22,8 @@
             </form>
             <div class="icons">
                 <div id="search-btn" class="fa-solid fa-magnifying-glass"></div>
-                <a href="" id="heart"><i class="fa-solid fa-heart"></i></a>
-               <a href="" id="shopping-cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="wishList.php" id="heart"><i class="fa-solid fa-heart"></i></a>
+               <a href="cardViwe.php" id="shopping-cart"><i class="fa-solid fa-cart-shopping"></i></a>
                 <div id="login-btn" ><i class="fa-solid fa-user"></i></div>
             </div>
         </div>

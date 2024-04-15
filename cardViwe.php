@@ -50,7 +50,7 @@ if(isset($_GET['productID'])){
                     <th>Product price</th>
                     <th>Product quantity</th>
                     <th>Total price</th>
-                    <th>Action</th>
+                    <th colspan="2" >Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -70,7 +70,7 @@ if(isset($_GET['productID'])){
                             <form action="" method="post" class="btn-list">
                                 <!-- <input type="hidden" value="<?php echo $row['productId']; ?>" name="update_quantity"> -->
                                 <input type="submit" value="Update" name="update_pdt_qty" class="btn">
-                                <input type="submit" value="Remove" name="Remove_pdt_qty" class="btn">
+                                <input type="submit" value="Remove" name="Remove_pdt_qty" class="delete-btn">
                             </form>
                         </td>
                         </tr>
