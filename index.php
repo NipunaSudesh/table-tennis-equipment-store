@@ -253,7 +253,7 @@ if(mysqli_num_rows($select_product)>0){
              Get 50% Off on Rackets, Rubber, Tables, Balls, and Stylish Apparel.
              Don't Miss Out on This Smash-Hit Deal! Grab Your Gear and Ace the Savings Today!"
         </p>
-        <a href="#" class="btn">Shop Now</a>
+        <a href="allProduct.php" class="btn">Shop Now></a>
     </div>
 
     <div class="image">

@@ -84,6 +84,12 @@
 .btn:hover{
     background-color: var(--dark-blue);
 }
+.delete-btn{
+    background-color: var(--red);
+}
+.delete-btn:hover{
+    background-color: var(--dark-red);
+}
 /* .delete-btn{
     background-color: var(--red);
 }
@@ -227,7 +233,78 @@
      } */
 
      /* ////////////////////cardviwe///////////////// */
+/* Table Section  */
+
+table{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.table-container{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    align-items: center;
+    text-align: center;
+}
   
+table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+  
+table tr:hover {
+    background-color: #ddd;
+}
+  
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: var(--dark-color);
+    color: white;
+}
+
+.tableImage{
+    width: 40%;
+    height: 40%;
+    margin: auto;
+    align-items: center;
+    text-align: center; 
+}
+
+/* Cart Section */
+
+.cart .heading{
+    font-size: xx-large;
+    font-weight: 600;
+    text-align: center;
+    margin: 2rem;
+}
+
+.quantity_box{
+    display: flex;
+}
+
+input[type="number"]{
+    width: 30px;
+    margin: 1.5rem;
+}
+
+.cartRemove{
+    font-size: x-large;
+    color: var(--gold);
+}
+
+.cartRemove:hover{
+    font-size: xx-large;
+    color: var(--dark-color);
+}
 
      /* ////////////////////////////////// */
      
