@@ -37,7 +37,7 @@ if(mysqli_num_rows($select_product)>0){
             <div class="content">
                 <h3>'.$row['productName'].'</h3>
                 <div class="price">Rs.'.$row['price'].' <span>Rs.'.$row['OldPrice'].'</span></div>
-                <a href="#" class="btn">Add to Cart</a>
+                <a href="cardViwe.php?allProductID='.$row['productID'].'"><button class="btn">Add Card</button></a>
             </div>
         </div>
         ';
