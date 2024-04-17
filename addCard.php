@@ -25,7 +25,7 @@
             $productQty++;
             $updateCart = mysqli_query($conn, "UPDATE addCart SET quantity = $pQty WHERE productID = $productID");
         if($updateCart){
-        mysqli_query($connect, "UPDATE products SET quantity = $quantity-1 WHERE productID = $productID");
+        mysqli_query($conn, "UPDATE products SET quantity = $quantity-1 WHERE productID = $productID");
         $displayMsg = 'Added To Cart Successfully!';
         header('location:index.php?msg='.$displayMsg.'');
         // added to cart successfully
@@ -66,5 +66,45 @@
         }
         header('location:wishlistview.php?msg='.$displayMsg.'');
       }
+
+      if (isset($_GET['allProductID'])) {
+
+        if (isset($_SESSION['userID'])) {
+            $userID = $_SESSION['userID'];
+    
+            $productID = $_GET['allProductID'];
+            $select_products = "SELECT * FROM products WHERE productID  = $productID;";
+            $get_product = mysqli_query($conn, $select_products);
+            $row = mysqli_fetch_assoc($get_product);
+            $productName = $row['productName'];
+            $image = $row['image'];
+            $price = $row['price'];
+            $quantity = $row['quantity'];
+            $category = $row['category'];
+    
+    
+            $sqlcheckCart = "SELECT * FROM addCard WHERE productID = $productID and userID = $userID";
+            $checkcart = mysqli_query($conn, $sqlcheckCart);
+            if (mysqli_num_rows($checkcart) == 0) {
+                $sqlAdcart = "INSERT INTO addCard (productID,userID,productName,image,price) VALUES ('$productID','$userID','$productName','$image','$price')";
+                $addCart = mysqli_query($conn, $sqlAdcart);
+            } else {
+                $rowQty = mysqli_fetch_assoc($checkcart);
+                $pQty = $rowQty['quantity'];
+                $pQty++;
+                $updateCart = mysqli_query($conn, "UPDATE addCard SET quantity = $pQty WHERE productID = $productID");
+            }
+            mysqli_query($conn, "UPDATE products SET quantity = $quantity-1 WHERE productID = $productID");
+            $displayMsg = 'Added To Cart Successfully!';
+    
+            header("location:allProducts.php?msg=".$displayMsg."");
+        } else {
+    
+            $displayMsg = 'Please loging the system!';
+            header("location:loginForm.php?msg=".$displayMsg."");
+        }
+    }
+
+    
     ?>
 
