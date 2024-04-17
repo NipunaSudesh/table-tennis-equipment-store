@@ -35,18 +35,36 @@
         }
 
     }
+}
+
+    if (isset($_GET['WishproductID'])) {
+        $productID = $_GET['product_id'];
+        $select_products = "SELECT * FROM products WHERE productID  = $productID;";
+        $get_product = mysqli_query($conn, $select_products);
+        $row = mysqli_fetch_assoc($get_product);
+        $productName = $row['productName'];
+        $image = $row['image'];
+        $price = $row['price'];
+        $userID = $_SESSION['userID'];
+    
+    
+        $sqlcheckCart = "SELECT * FROM addCart WHERE productID = $productID";
+        $checkcart = mysqli_query($conn, $sqlcheckCart);
+        if (mysqli_num_rows($checkcart) == 0) {
+            $sqlAdcart = "INSERT INTO addCart (productID,userID,productName,image,price) VALUES ('$productID','$userID','$productName','$image','$price')";
+            $addCart = mysqli_query($conn, $sqlAdcart);
+            mysqli_query($conn, "DELETE FROM wishlist WHERE productID = $productID");
+            $displayMsg = 'Product removed from the whishlist.?msg='.$displayMsg.'';
+        } elseif (mysqli_num_rows($checkcart) > 0) {
+            $rowQty = mysqli_fetch_assoc($checkcart);
+            $pQty = $rowQty['quantity'];
+            $pQty++;
+            $updateCart = mysqli_query($conn, "UPDATE addCart SET quantity = $pQty WHERE productID = $productID");
+            mysqli_query($conn, "DELETE FROM wishlist WHERE productID = $productID");
+            $displayMsg = 'Added To Cart Successfully!';
+    
+        }
+        header('location:wishlistview.php?msg='.$displayMsg.'');
+      }
     ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>add card</title>
-    <script src="https://kit.fontawesome.com/78f762bd78.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style2.css">
-</head>
-<body>
-    
-</body>
-</html>
