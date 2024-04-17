@@ -187,15 +187,9 @@ if(mysqli_num_rows($select_product)>0){
     <!-- icons section ends -->
  <!-- newsletter section starts -->
 
- <section class="newsletter">
-
-    <form action="">
-        <h3>Subscribe For Latest Updates</h3>
-        <input type="email" name="" placeholder="Enter your email" class="box">
-        <input type="submit" value="Subscribe" class="btn">
-    </form>
-</section>
-<!-- newsletter section ends -->
+<?php
+@include'addReviwes.php';
+?>
 
 <!-- Arrivals section starts -->
 
