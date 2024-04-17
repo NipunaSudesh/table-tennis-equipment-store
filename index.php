@@ -35,7 +35,7 @@
             <div class="swiper item-slider">
                 <div class="swiper-wrapper">
                 <?php
-                $select_product=mysqli_query($conn,"SELECT * FROM products where productType='Show_item'");
+                $select_product=mysqli_query($conn,"SELECT * FROM products where quantity=0");
                     if(mysqli_num_rows($select_product)>0){
                         while($row= mysqli_fetch_assoc($select_product)){
                             echo' 
@@ -114,7 +114,7 @@ if(mysqli_num_rows($select_product)>0){
         <div class="swiper-slide box">
             <div class="icons">
                 <a href="#" class="fa-solid fa-magnifying-glass"></a>
-                <a href="#" class="fa-regular fa-heart"></a>
+                <a href="wishList.php" class="fa-regular fa-heart"></a>
                 <a href="#" class="fa-regular fa-eye"></a>
             </div>
             <div class="image">

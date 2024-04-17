@@ -62,7 +62,7 @@ if(isset($_GET['productID'])){
                         <tr>
                         <td><?php echo $i; ?></td>
                         <td><?php echo $row['ProductName']; ?></td>
-                        <td><img src="uploaded_img/<?php echo $row['Image']; ?>"</td>
+                        <td><img class="tableImage" src="uploaded_img/<?php echo $row['Image']; ?>"</td>
                         <td><?php echo $row['Price']; ?></td>
                         <td><?php echo $row['Quantity']; ?></td>
                         <td><?php echo $subtotal= $row['Price'] * $row['Quantity']; ?></td>
