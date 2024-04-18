@@ -3,6 +3,7 @@
 session_start();
 //@include 'header.php';
 // if(isset($_SESSION["user_id"])){
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
      $user_id = $_SESSION["user_id"];
     $user_query = mysqli_query($conn, "SELECT user_name FROM user_form WHERE id = '$user_id';");
     $user_row = mysqli_fetch_assoc($user_query);
@@ -21,7 +22,7 @@ session_start();
     else{
         echo "Error: " . mysqli_error($conn);
     }
-
+    }
 ?>
 
 <!DOCTYPE html>
