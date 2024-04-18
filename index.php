@@ -188,7 +188,7 @@ if(mysqli_num_rows($select_product)>0){
  <!-- newsletter section starts -->
 
 <?php
-@include'addReviwes.php';
+@include 'addReviwes.php';
 ?>
 
 <!-- Arrivals section starts -->
