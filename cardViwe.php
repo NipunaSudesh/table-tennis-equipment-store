@@ -1,89 +1,133 @@
 <?php
-@include 'config.php';
-@include 'header.php';
-if(isset($_GET['productID'])){
-    $productID=$_GET['productID'];
+include_once 'config.php';
+include_once 'header.php';
+session_start();
 
-    $select_product=mysqli_query($conn,"SELECT * FROM products WHERE productID='$productID'");
-    if(mysqli_num_rows($select_product)>0){
-        $row= mysqli_fetch_assoc($select_product);
+if (isset($_POST['update_pdt_qty'])) {  
+    $update_value = $_POST['update_quantity'];
+    $update_id = $_POST['update_qty_id'];
+    $update_qty_query = mysqli_query($conn, "UPDATE addCart SET quantity = $update_value WHERE productID = $update_id");
 
-    $productName = $row['productName'];
-    $productImage = $row['image'];
-    $productPrice = $row['price'];
-
-    $insertQuery = "INSERT INTO addcard (productName, Image, Price,Quantity) VALUES ('$productName', '$productImage', '$productPrice',1)";
-    if (mysqli_query($conn, $insertQuery)) {
-        echo "Product added to card successfully.";
-    } else {
-        echo "Error: " . $insertQuery . "<br>" . mysqli_error($conn);
+    if ($update_qty_query) {
+        $displayMsg = 'Cart updated Successfully!';
+        // header('location:cartview.php');
     }
 }
+if (isset($_GET['remove'])) {
+    $productID = $_GET['remove'];
+        $select_products = "SELECT * FROM products WHERE productID  = $productID;";
+        $get_product = mysqli_query($conn, $select_products);
+        $row = mysqli_fetch_assoc($get_product);
+        $quantity = $row['quantity'];
+
+    $removeQuery = mysqli_query($conn, "DELETE FROM addCart WHERE productID = $productID");
+    mysqli_query($conn, "UPDATE products SET quantity = $quantity+1 WHERE productID = $productID");
+    $displayMsg = 'Product removed from the cart Successfully!';
 
 }
+
+
+
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card</title>
-    <script src="https://kit.fontawesome.com/78f762bd78.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style2.css">
-
-    
+    <title>card</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <section>
-        <div class="card">
-            <h1 class="heading">My card</h1>
-            <table>
-                <?php
-                $select=mysqli_query($conn,"SELECT * FROM addcard");
-                if(mysqli_num_rows($select)>0){
-                    echo '
-                    <thead>
-                    <tr>
-                    <th>No</th>
-                    <th>Product name</th>
-                    <th>Product image</th>
-                    <th>Product price</th>
-                    <th>Product quantity</th>
-                    <th>Total price</th>
-                    <th colspan="2" >Action</th>
-                    </tr>
+
+    <section class="cart">
+<!-- ......................................................... -->
+    <?php
+    if (isset($displayMsg)) {
+        echo "<div class='error-msg'>
+                <span>" . $displayMsg . "</span>
+                <i class='fas fa-times' onclick='this.parentElement.style.display=`none`';></i>
+            </div>";
+    }
+    ?>
+<!-- ......................................................... -->
+        <table>
+            <?php
+            $total = 0;
+            $userID = $_SESSION['user_id'];
+
+            $select_of_product = mysqli_query($conn, "SELECT * FROM addCart where userID ='$userID' ");
+            if (mysqli_num_rows($select_of_product) > 0) {
+                echo '
+                <h1 class="heading">My Cart</h1>
+                <thead>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Action</th>
                     </thead>
-                    <tbody>
-                    ';
-                    $i=1;
-                    $grandTotal=0;
-                    while($row=mysqli_fetch_assoc($select)){
-                        ?>
-                        <tr>
-                        <td><?php echo $i; ?></td>
-                        <td><?php echo $row['ProductName']; ?></td>
-                        <td><img class="tableImage" src="uploaded_img/<?php echo $row['Image']; ?>"</td>
-                        <td><?php echo $row['Price']; ?></td>
-                        <td><?php echo $row['Quantity']; ?></td>
-                        <td><?php echo $subtotal= $row['Price'] * $row['Quantity']; ?></td>
+                    <tbody>';
+                $i = 1;
+
+                while ($fetch_prdt = mysqli_fetch_assoc($select_of_product)) {
+            ?>
+                    <tr>
                         <td>
-                            <form action="" method="post" class="btn-list">
-                                <!-- <input type="hidden" value="<?php echo $row['productId']; ?>" name="update_quantity"> -->
-                                <input type="submit" value="Update" name="update_pdt_qty" class="btn">
-                                <input type="submit" value="Remove" name="Remove_pdt_qty" class="delete-btn">
+                            <?php echo $i;
+                            $i++;
+                            ?>
+                        </td>
+                        <td><?php echo $fetch_prdt['productName']; ?> </td>
+                        <td><img class="tableImage" src="product-images/<?php echo $fetch_prdt['image']; ?> "></td>
+                        <td><?php echo $fetch_prdt['price']; ?> </td>
+                        <td>
+                            <form action="" method="post">
+                                <input type="hidden" value="<?php echo $fetch_prdt['productID']; ?>" name="update_qty_id">
+                                <div class="quantity_box">
+                                    <input type="number" min="1" value="<?php echo $fetch_prdt['quantity']; ?>" name="update_quantity" class="quantity">
+                                    <input type="submit" value="Update" name="update_pdt_qty" class="btn">
+                                </div>
                             </form>
                         </td>
-                        </tr>
-                        <?php
-                        $i++;
-                        $grandTotal += $subtotal;
-                    }
+                        <td>
+                            <?php echo $subtotal = $fetch_prdt['price'] * $fetch_prdt['quantity'] ?>
+                        </td>
+                        <td>
+                            <a href="cartview.php?remove=<?php echo $fetch_prdt['productID']; ?> " onclick="return confirm('Are you sure want to delete this item')" class="cartRemove"><i class="fa-solid fa-trash-can"></i></a>
+                        </td>
+                    </tr>
+
+                <?php
+                    $total = $total + $subtotal;
                 }
                 ?>
 
                 </tbody>
-            </table>
+        </table>
+
+    <?php
+                echo '<div class="heading">
+        <span>GRAND total :  ' . $total . '</span>
         </div>
+        <div class="purchase">
+        <a href="checkout.php?total=' . $total . '" class="btn" id="checkout-btn">Checkout</a>
+    </div>';
+            } else {
+                echo '<h1 class="heading">Cart is Empty</h1>';
+            }
+    ?>
+
+
     </section>
 </body>
+
 </html>
