@@ -187,15 +187,9 @@ if(mysqli_num_rows($select_product)>0){
     <!-- icons section ends -->
  <!-- newsletter section starts -->
 
- <section class="newsletter">
-
-    <form action="">
-        <h3>Subscribe For Latest Updates</h3>
-        <input type="email" name="" placeholder="Enter your email" class="box">
-        <input type="submit" value="Subscribe" class="btn">
-    </form>
-</section>
-<!-- newsletter section ends -->
+<?php
+@include 'addReviwes.php';
+?>
 
 <!-- Arrivals section starts -->
 
@@ -261,20 +255,66 @@ if(mysqli_num_rows($select_product)>0){
 
     </div>
 </section>
-<!-- deal section ends -->
 
+
+<!-- deal section ends -->
 <!-- Reviews section starts -->
 
 <section class="reviews" id="reviews">
 
-    <h1 class="heading"><span>Customers Reviews</span></h1>
+    <h1 class="heading"><span>Client's Reviews</span></h1>
 
-            <div class="swiper reviews-slider">
-                <div class="swiper-wrapper">
+    <div class="swiper reviews-slider">
+        <div class="swiper-wrapper">
 
+
+            <?php
+
+
+            $select_blogs = "SELECT * FROM `reviwes`;";
+            $get_blogs = mysqli_query($conn, $select_blogs);
+            if (mysqli_num_rows($get_blogs) > 0) {
+                while ($row = mysqli_fetch_assoc($get_blogs)) {
+
+                    $i = 0;
+                    $stars = 0;
+
+                    $name = $row['name'];
+                    $review = $row['massage'];
+                    $stars = $row['star'];
+
+                    echo '
                     <div class="swiper-slide box">
-                        <img src="photo/img1.jpeg" alt="">
-                        <h3>Bhashana Chamodhya</h3>
+                    <img src="photo/'.$row['Image'].'" alt="">
+                    <h3>' . $name . '</h3>
+                    <p>' . $review . '</p>
+                ';
+                    echo '
+                <div class="stars">';
+
+                    while ($i < $stars) {
+                        echo '
+                    <i class="fas fa-star"></i>
+                    ';
+                        $i++;
+                    }
+                    echo
+                    '</div>
+                    </div>
+                    ';
+                }
+            }
+            ?>
+
+
+        </div>
+    </div>
+
+</section>
+
+                    <!-- <div class="swiper-slide box">
+
+
                         <p>
                             "I discovered this table tennis store while exploring the town, and it's now my go-to place for all things table tennis. From top-notch rackets to essential accessories,
                              you're sure to find something that enhances your game."
@@ -286,9 +326,9 @@ if(mysqli_num_rows($select_product)>0){
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                         </div>
-                    </div>
+                    </div> -->
 
-                       <div class="swiper-slide box">
+                       <!-- <div class="swiper-slide box">
                         <img src="photo/img3.jpeg" alt="">
                         <h3>Sevindu Punsara</h3>
                         <p>
@@ -325,7 +365,7 @@ if(mysqli_num_rows($select_product)>0){
                     <div class="swiper-slide box">
                         <img src="photo/img4.jpeg" alt="">
                         <h3>Peheliya Dhanuka</h3>
-                        <p>""This table tennis shop is a paradise for table tennis enthusiasts like me. From high-quality rackets to stylish table tennis apparel, they have it all.
+                        <p>"This table tennis shop is a paradise for table tennis enthusiasts like me. From high-quality rackets to stylish table tennis apparel, they have it all.
                              This place is worth a visit for all your table tennis needs."
                         </p>
                         <div class="stars">
@@ -384,10 +424,12 @@ if(mysqli_num_rows($select_product)>0){
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-regular fa-star"></i>
                         </div>
-                    </div>
+                    </div> 
         </div>
     </div>
-</section>
+</section> 
+
+
  <!-- ///////////////////////footer////////////////// -->
    <section class="footer">
     <div class="box-container">

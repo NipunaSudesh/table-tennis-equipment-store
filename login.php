@@ -62,6 +62,7 @@ $sql = "SELECT * FROM user_form WHERE email='$email' AND pass='$pass'" ;
             <input type="submit" name="submit" value="Login Now" class="btn" required>
             <p> don't have an account ? <a href="rejister.php">Rejister Now</a></p>
             <p><a href="home.php">home page</a></p>
+        </form>
     </div>
     <script src="script.js"></script>
 </body>
